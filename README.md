@@ -1,2 +1,2 @@
 # odb
-Persisten Object Database
+Persistent Object Database
