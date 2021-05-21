@@ -1,4 +1,4 @@
-public class Person {
+public class Person implements CRUD{
     private String Vorname;
     private String Nachname;
     private long id;
@@ -6,6 +6,26 @@ public class Person {
         id = id;
         Vorname = vorname;
         Nachname = nachname;
+    }
+
+    @Override
+    public void create(Object object) {
+
+    }
+
+    @Override
+    public void read() {
+
+    }
+
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public void delete() {
+
     }
 
     public String getVorname() {
@@ -23,4 +43,6 @@ public class Person {
     public void setNachname(String nachname) {
         Nachname = nachname;
     }
+
+
 }
