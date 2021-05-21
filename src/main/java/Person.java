@@ -1,9 +1,9 @@
 public class Person implements CRUD{
     private String Vorname;
     private String Nachname;
-    private long id;
-    public Person(long id, String vorname, String nachname) {
-        id = id;
+    private int id;
+    public Person(int id, String vorname, String nachname) {
+        this.id = id;
         Vorname = vorname;
         Nachname = nachname;
     }

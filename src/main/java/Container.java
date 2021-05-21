@@ -9,7 +9,7 @@ public class Container extends ArrayList implements CRUD{
     @Override
     public void create(Object data) {
         try {
-            FileOutputStream fos = new FileOutputStream ("testfile.txt");
+            FileOutputStream fos = new FileOutputStream ("db/testfile.txt");
             ObjectOutputStream oos = new ObjectOutputStream (fos);
             oos.writeObject(data);
             oos.flush();

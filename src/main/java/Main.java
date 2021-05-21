@@ -19,6 +19,7 @@ public class Main {
         System.out.println(Persons.size());
 
         Persons.add(testPerson);
+        Persons.add(new Person(2,"HKlaus","Müller"));
 
         System.out.println(Persons.size());
 
