@@ -14,7 +14,7 @@ public class Person implements CRUD{
     }
 
     @Override
-    public void read() {
+    public void read(){
 
     }
 
