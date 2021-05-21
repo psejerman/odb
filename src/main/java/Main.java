@@ -27,20 +27,7 @@ public class Main {
         Persons.create(gson.toJson(Persons));
 
 
-        //Test Serialisierer
-        /*
-        String filename = "PersonsFile.txt";
 
-        String personsString = gson.toJson(Persons);
-
-        public void create(Object[] Data) throws Exception{
-            FileOutputStream fos = new FileOutputStream (this.filePath + this.fileName);
-            ObjectOutputStream oos = new ObjectOutputStream (fos);
-            oos.writeObject(Data);
-            oos.flush();
-            oos.close();
-        }
-        */
 
     }
 }
