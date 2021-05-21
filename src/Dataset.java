@@ -1,4 +1,11 @@
-public class Dataset {
+import java.io.Serializable;
+
+
+public class Dataset implements Serializable {
+
+
+    private Long id;
+    // TODO Set uniq id?
     // TODO Read Dataset
     int id;
     // TODO Add new Dataset
