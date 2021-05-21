@@ -26,6 +26,12 @@ public class Main {
 
         Gson gson = new Gson();
         Persons.create(gson.toJson(Persons));
+        //String jsonString = (new Container()).read();
+        //System.out.println(jsonString);
+
+        Container test = gson.fromJson((new Container()).read(), Container.class);
+        System.out.println(test.get(0).toString());
+        System.out.println(Persons.get(0).toString());
 
 
 

@@ -23,8 +23,17 @@ public class Container extends ArrayList implements CRUD{
     }
 
     @Override
-    public void read() {
-        return ;
+    public String read() {
+        try {
+            FileInputStream fis = new FileInputStream ("db/testfile.txt");
+            ObjectInputStream ois = new ObjectInputStream (fis);
+            String retrievedData = (String) ois.readObject();
+            ois.close();
+            return retrievedData;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
