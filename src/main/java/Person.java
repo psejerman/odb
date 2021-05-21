@@ -14,7 +14,7 @@ public class Person implements CRUD{
     }
 
     @Override
-    public void read(){
+    public String read(){
 
     }
 
@@ -26,6 +26,15 @@ public class Person implements CRUD{
     @Override
     public void delete() {
 
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "Vorname='" + Vorname + '\'' +
+                ", Nachname='" + Nachname + '\'' +
+                ", id=" + id +
+                '}';
     }
 
     public String getVorname() {

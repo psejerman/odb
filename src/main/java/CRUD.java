@@ -1,6 +1,6 @@
 public interface CRUD {
     public void create(Object data);
-    public void read();
+    public String read();
     public void update();
     public void delete();
 

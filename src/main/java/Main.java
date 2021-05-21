@@ -5,9 +5,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 public class Main {
-    public static void main(String[] args) {
-        System.out.println("Hello I am ODB");
 
+
+    public static void main(String[] args) {
         Person testPerson = new Person(1,"Klaus", "Mayer");
         Auto testAuto = new Auto();
         ODB myDatabase = new ODB();
@@ -19,7 +19,8 @@ public class Main {
         System.out.println(Persons.size());
 
         Persons.add(testPerson);
-        Persons.add(new Person(2,"HKlaus","Müller"));
+        Persons.add(new Person(2,"Klaus","Müller"));
+
 
         System.out.println(Persons.size());
 
