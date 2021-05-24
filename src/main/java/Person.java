@@ -1,7 +1,12 @@
+import java.util.List;
+
 public class Person extends Dataset implements CRUD{
     private String Vorname;
     private String Nachname;
     //private int id;
+    public Person(){
+        super.setId();
+    }
     public Person(/*int id, */String vorname, String nachname) {
         super.setId();
         Vorname = vorname;
@@ -9,12 +14,13 @@ public class Person extends Dataset implements CRUD{
     }
 
     @Override
-    public void create(Object object) {
-
+    public Container create() {
+        Container Con = new Container();
+        return Con;
     }
 
     @Override
-    public String read(){
+    public List<Object> read(){
 
         return null;
     }

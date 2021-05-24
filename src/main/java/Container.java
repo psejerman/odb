@@ -11,58 +11,60 @@ public class Container extends ArrayList implements CRUD{
     private Gson gson;
     private String elementType;
     private File containerFile;
-    public Container () {
+    private Class childClass;
+
+    public Container() {
         this.gson = new Gson();
     }
-    @Override
-    public void create(Object data) {
-        try {
-            FileOutputStream fos = new FileOutputStream ("db/testfile.txt");
-            ObjectOutputStream oos = new ObjectOutputStream (fos);
-            oos.writeObject(data);
-            oos.flush();
-            oos.close();
-
-            return ;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return;
+    public  Container (File containerFile) {
+        this.gson = new Gson();
+        this.containerFile = containerFile;
     }
-
-    //Create von Fynn
+    @Override
     /** Erstellt ein Container Objekt und schreibt persistente Daten auf die Festplatte
      * @author Fynn
-     * @param  Object Container, String dateiname
-     * @return void
+     * @param -
+     * @return Container Datensätze
      */
-    public void create2(Object data, String nameOfData) {
+    public Container create() {
         try {
-
-            Writer writer = Files.newBufferedWriter(Paths.get("db/" + nameOfData));
-            this.gson.toJson(data, writer);
+            Writer writer = Files.newBufferedWriter(this.containerFile.toPath());
+            this.gson.toJson(this, writer);
             writer.close();
         } catch(Exception e) {
             e.printStackTrace();
         }
+        return this;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
-    public String read() {
-        try {
-            FileInputStream fis = new FileInputStream ("db/testfile.txt");
-            ObjectInputStream ois = new ObjectInputStream (fis);
-            String retrievedData = (String) ois.readObject();
-            ois.close();
-            return retrievedData;
+    public Container read(Class class) {
+/*
+       try {
+            //Liest Datei
+            Reader reader = Files.newBufferedReader(Paths.get(this.getContainerFile()));
+            //neuer Container
+            Container container = new Container();
+            //Datei hält Personen
+
+            List Objects  = new ArrayList();
+            Person test = new Person();
+            test = this.gson.fromJson(reader, class);
+            //Objects = this.gson.fromJson(reader, class);
+            //return Objects;
+
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
         return null;
     }
 
     //read von Fynn
-    public Container read2(String nameOfData, String nameOfListObjects) {
+        public Container read2(String nameOfData, String nameOfListObjects) {
         try {
 
             //Liest Datei
@@ -95,14 +97,11 @@ public class Container extends ArrayList implements CRUD{
     }
 
 
-    @Override
-    public void update() {
-        return ;
-    }
+
 
     //ähnlich wie read2() Zunächst wird die Datei gelesen und die Liste wird mit dem neuen Attribut beschrieben
     public Container update2(String nameOfData, String nameOfListObjects, int numberOfUpdateTarget, String nameOfUpdateTarget, String nameOfUpdateValue) {
-        try {
+        /*try {
 
             //Liest Datei
             Reader reader = Files.newBufferedReader(Paths.get("db/"+ nameOfData));
@@ -146,14 +145,11 @@ public class Container extends ArrayList implements CRUD{
             return container;
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
         return null;
     }
 
-    @Override
-    public void delete() {
 
-    }
 
     //Die Datei mit dem eingegebenen Namen wird im Ordner db/ gelöscht
     public void delete2( String nameOfFile ) {
@@ -172,7 +168,7 @@ public class Container extends ArrayList implements CRUD{
 
     public String getElementType() {
         if (this.size() >=  1) {
-            return this.elementType = this.get(0).getClass().getSimpleName()+"s";
+            return this.elementType = this.get(0).getClass().getSimpleName();
         }
         else return null;
     }
@@ -183,6 +179,7 @@ public class Container extends ArrayList implements CRUD{
      * @return String absoluter Dateipfad
      */
     public String getContainerFile() {
+        this.setContainerFile();
         return this.containerFile.getAbsolutePath();
     }
 
@@ -194,12 +191,18 @@ public class Container extends ArrayList implements CRUD{
      * @resturn void
      */
     public void setContainerFile() {
-        this.containerFile = new File(this.getElementType());
+        this.containerFile = new File("db/" + this.getElementType() + "s");
     }
-    //TODO Save Container to file
-    //TODO Read Container from file
-    //TODO Delete container->file
-    //TODO Check if file exists
+
+    public Class getChildClass() {
+       return this.childClass;
+    }
+
+    public void setChildClass() {
+        if
+        this.get(0).getClass();
+        this.childClass = childClass;
+    }
 
 
 
