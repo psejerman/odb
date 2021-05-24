@@ -1,9 +1,9 @@
-public class Person implements CRUD{
+public class Person extends Dataset implements CRUD{
     private String Vorname;
     private String Nachname;
-    private int id;
-    public Person(int id, String vorname, String nachname) {
-        this.id = id;
+    //private int id;
+    public Person(/*int id, */String vorname, String nachname) {
+        super.setId();
         Vorname = vorname;
         Nachname = nachname;
     }
@@ -34,7 +34,7 @@ public class Person implements CRUD{
         return "Person{" +
                 "Vorname='" + Vorname + '\'' +
                 ", Nachname='" + Nachname + '\'' +
-                ", id=" + id +
+                ", id=" + super.getId() +
                 '}';
     }
 
