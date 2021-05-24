@@ -2,7 +2,7 @@ import java.io.Serializable;
 import java.util.UUID;
 
 
-public class Dataset implements Serializable {
+public class Dataset {
 
 
     // TODO Set uniq id?

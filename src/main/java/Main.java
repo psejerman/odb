@@ -1,13 +1,19 @@
-import com.google.gson.*;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.net.URI;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 public class Main {
 
 
     public static void main(String[] args) {
+        Container Persons = new Container();
+        Persons.add(new Person("Anne", "Müller"));
+        Persons.add(new Person("Horst", "Maier"));
+        Persons.create2(Persons, "Persons");
+
+        Persons.setContainerFile();
+        System.out.println(Persons.getContainerFile());
+
 
 
 
