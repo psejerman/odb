@@ -2,8 +2,11 @@ import java.io.Serializable;
 import java.util.UUID;
 
 
-public class Dataset {
+public class Dataset implements Serializable{
 
+    public Dataset() {
+        this.id = UUID.randomUUID();
+    }
 
     // TODO Set uniq id?
     private UUID id;

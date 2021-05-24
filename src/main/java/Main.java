@@ -6,23 +6,33 @@ import java.nio.file.Paths;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
 
     public static void main(String[] args) {
-        Container Persons = new Container(new File("db/Persons"));
-        Persons.add(new Person("Anne", "Müller"));
-        Persons.add(new Person("Horst", "Maier"));
-        Persons.create();
 
-        //Container Autos = new Container();
-        //Autos.read(Auto.class);
-        //Reader reader = Files.newBufferedReader(Paths.get(this.getContainerFile()));
-        Person test = new Person();
+        Container persons = new Container();
+        persons.put(new Person("Horst", "Mayer"));
+        persons.put(new Person("Kurt", "Müller"));
 
-        //System.out.println(Persons.getContainerFile());
-        //System.out.println(Persons.read().get(0).getClass().getSimpleName());
+        persons.create();
+
+        List test = persons.read(Person[].class);
+        System.out.println(test.get(0));
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

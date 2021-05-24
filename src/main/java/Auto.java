@@ -1,5 +1,9 @@
-public class Auto {
+public class Auto extends Dataset{
     private String farbe;
+
+    public Auto() {
+        super();
+    }
 
     public Auto(String farbe) {
         this.farbe = farbe;
