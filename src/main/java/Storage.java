@@ -57,7 +57,6 @@ public class Storage {
      */
     public List read() {
         try {
-            String fileName = "db/Persons";
             FileInputStream fis = new FileInputStream(this.file);
             ObjectInputStream ois = new ObjectInputStream(fis);
             Object retrievedData = ois.readObject();
