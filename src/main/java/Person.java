@@ -7,7 +7,7 @@ public class Person extends Dataset{
     public Person(){
         super.setId();
     }
-    public Person(/*int id, */String vorname, String nachname) {
+    public Person(String vorname, String nachname) {
         super.setId();
         Vorname = vorname;
         Nachname = nachname;

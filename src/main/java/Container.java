@@ -1,31 +1,27 @@
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import java.lang.reflect.Type;
-import com.google.gson.reflect.TypeToken;
-
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
-
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Arrays;
 import java.util.List;
 
-public class Container implements Serializable{
+public class Container<Type> implements Serializable{
     private Gson gson;
     private File containerFile;
+    private Class<Type> type;
     private List list = new ArrayList<>();
 
 
     public Container() {
         this.gson = new Gson();
-
-
+    }
+    public Container(Class <Type> type) {
+        this.gson = new Gson();
+        this.type = type;
     }
 
     public <T> void put( T value) {
@@ -62,20 +58,23 @@ public class Container implements Serializable{
      * @return
      */
 
-    public List read(Class cls) {
-    //public Object read () {
+    public List read() {
+    /*
        try {
            String fileName = "db/Persons";
            FileInputStream fis = new FileInputStream(fileName);
            ObjectInputStream ois = new ObjectInputStream(fis);
-           List retrievedData = Arrays.asList(ois.readObject(),cls.getClass());
+           Object retrievedData = (type.getClass().getSimpleName() + .class)ois.readObject();
            ois.close();
+           System.out.println(retrievedData.);
+
+
            return retrievedData;
 
 
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
        return null;
 
     }
