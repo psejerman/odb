@@ -15,14 +15,16 @@ public class Person extends Dataset{
 
 
 
-    public List<Object> read(){
+    public Person read(){
+
+
 
         return null;
     }
 
 
-    public void update() {
-
+    public Person update() {
+        return null;
     }
 
 

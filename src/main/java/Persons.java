@@ -2,14 +2,16 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Persons extends Container{
+public class Persons {
 
     public Persons() {
 
-    }
 
-    public List<Person> read() {
-        return  (List<Person>) Storage.getInstance().setFile(super.sourceFile).read();
+    }
+/*
+    /*public Persons read() {
+        this.setList((List<Person>) Storage.getInstance().setFile(super.sourceFile).read());
+        return this;
     }
 
     public void update() {}
@@ -26,5 +28,5 @@ public class Persons extends Container{
     @Override
     public List<Person> getList() {
         return (List<Person>)super.getList();
-    }
+    }*/
 }

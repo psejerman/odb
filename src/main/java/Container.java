@@ -1,14 +1,23 @@
 import java.io.File;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class Container {
 
-    protected File sourceFile = new File(this.getClass().getSimpleName());;
-    private List list = new ArrayList<>();
+    private File sourceFile = new File(this.getClass().getSimpleName());;
+    private Class type;
+    private List list;
+
+    public Container(Class type) {
+        this.type = type;
+    }
+
     public void create() {
         Storage.getInstance().setFile(this.sourceFile).write(this.list);
+    }
+
+    public Container read() {
+        this.list = this.getList(this.type);
+        return this;
     }
 
     public void deleteFile () {
@@ -23,8 +32,8 @@ public class Container {
         return (T) list.get(i);
     }
 
-    public List getList() {
-        return list;
+    public <Type>List<Type> getList(Class<Type> cls) {
+        return ((List<Type>) Storage.getInstance().setFile(this.sourceFile).read());
     }
 
     public void setList(List list) {
