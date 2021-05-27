@@ -57,13 +57,13 @@ public class Storage {
      * @author Peter
      * @return List retrievedData - Liste von gelesenen Objekten
      */
-    public List<Object> read() {
+    public Object read() {
         try {
             FileInputStream fis = new FileInputStream(this.file);
             ObjectInputStream ois = new ObjectInputStream(fis);
             Object retrievedData = ois.readObject();
             ois.close();
-            return (List<Object>)retrievedData;
+            return retrievedData;
         } catch (Exception e) {
             e.printStackTrace();
         }
