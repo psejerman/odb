@@ -38,7 +38,7 @@ public class Storage {
      * @author Peter
      * @param list list - Liste von Objekten
      */
-    public void write(List<Object> list) {
+    public void write(List list) {
         try {
             FileOutputStream fos = new FileOutputStream (this.file);
             ObjectOutputStream oos = new ObjectOutputStream (fos);
@@ -57,13 +57,13 @@ public class Storage {
      * @author Peter
      * @return List retrievedData - Liste von gelesenen Objekten
      */
-    public Object read() {
+    public List read() {
         try {
             FileInputStream fis = new FileInputStream(this.file);
             ObjectInputStream ois = new ObjectInputStream(fis);
             Object retrievedData = ois.readObject();
             ois.close();
-            return retrievedData;
+            return (List)retrievedData;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -78,18 +78,19 @@ public class Storage {
     /**
      * Setzt Datei in die serialisierte Objekte geschrieben werden als
      * absoluten Pfad, erstellt ggf neue datei
-     * @param File Zieldatei
+     * @param file Zieldatei
      * @return Storage Gibt Singelton zur weiteren Nutzung zurück
      */
 
     public Storage setFile(File file) {
 
         this.file = new File(storagePath.toString(),file.toString());
-        try {
-            Files.createFile(this.file.toPath());
-        }
-        catch (Exception e) {
-            System.out.println("Datei " + this.file.toString() + " konnte nicht erstellt werden");
+        if(!(this.file.exists() && Files.isRegularFile(this.file.toPath()))) {
+            try {
+                Files.createFile(this.file.toPath());
+            } catch (Exception e) {
+                System.out.println("Datei " + this.file.toString() + " konnte nicht erstellt werden");
+            }
         }
         return this;
     }

@@ -3,9 +3,8 @@ import java.util.List;
 public class Person extends Dataset{
     private String Vorname;
     private String Nachname;
-    //private int id;
     public Person(){
-        super.setId();
+
     }
     public Person(String vorname, String nachname) {
         super.setId();

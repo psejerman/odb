@@ -1,15 +1,19 @@
 import java.io.Serializable;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.UUID;
 
 
 public class Dataset implements Serializable{
+    private static final long serialVersionUID = 1L;
+    protected UUID id;
+    protected Timestamp createDate = Timestamp.from(Instant.now());
+    protected Timestamp updateDate;
 
     public Dataset() {
-        this.id = UUID.randomUUID();
-    }
 
-    // TODO Set uniq id?
-    private UUID id;
+
+    }
 
     public void setId() {
         this.id = UUID.randomUUID();
@@ -19,11 +23,6 @@ public class Dataset implements Serializable{
         return id;
     }
 
-    // TODO Read Dataset
 
-    // TODO Add new Dataset
-    // TODO Change existing Dataset
-    // TODO Find Dataset by Attribute
-    // TODO Delete Dataset
 }
 
