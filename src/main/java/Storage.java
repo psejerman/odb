@@ -1,4 +1,7 @@
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 /**
@@ -8,13 +11,14 @@ import java.util.List;
  * <b>Wichtig:</b> <p></p>Vor Schreibzugriff setFile() nutzen!</p>
  *
  * @author  Peter
- * @version 1.0
+ * @version 1.0.1
  * @since   25.05.2021
  */
 
 public class Storage {
     private static Storage INSTANCE = null;
     private File file;
+    private Path storagePath;
 
     public static Storage getInstance() {
         if (INSTANCE == null) {
@@ -24,6 +28,8 @@ public class Storage {
     }
 
     public Storage() {
+        // Default Speicherordner
+        this.storagePath = Paths.get("db").toAbsolutePath();
 
     }
 
@@ -31,9 +37,8 @@ public class Storage {
      * Schreibt eine Liste von Objekten persisten auf die Festplatte
      * @author Peter
      * @param list list - Liste von Objekten
-     * @return void
      */
-    public void write(List list) {
+    public void write(List<Object> list) {
         try {
             FileOutputStream fos = new FileOutputStream (this.file);
             ObjectOutputStream oos = new ObjectOutputStream (fos);
@@ -44,24 +49,21 @@ public class Storage {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return;
-
     }
 
     /**
      * Liest eine Liste von Objekten aus persistentem Speicher aus
      * und gibt diese zurück (ein Cast in den Richtigen Typ ist notwendig)
      * @author Peter
-     * @param -
-     * @return List retrieved Data - Liste von gelesenen Objekten
+     * @return List retrievedData - Liste von gelesenen Objekten
      */
-    public List read() {
+    public List<Object> read() {
         try {
             FileInputStream fis = new FileInputStream(this.file);
             ObjectInputStream ois = new ObjectInputStream(fis);
             Object retrievedData = ois.readObject();
             ois.close();
-            return (List)retrievedData;
+            return (List<Object>)retrievedData;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -70,11 +72,68 @@ public class Storage {
     }
 
     public File getFile() {
-        return file;
+        return this.file;
     }
 
+    /**
+     * Setzt Datei in die serialisierte Objekte geschrieben werden als
+     * absoluten Pfad, erstellt ggf neue datei
+     * @param File Zieldatei
+     * @return Storage Gibt Singelton zur weiteren Nutzung zurück
+     */
+
     public Storage setFile(File file) {
-        this.file = file;
+
+        this.file = new File(storagePath.toString(),file.toString());
+        try {
+            Files.createFile(this.file.toPath());
+        }
+        catch (Exception e) {
+            System.out.println("Datei " + this.file.toString() + " konnte nicht erstellt werden");
+        }
+        return this;
+    }
+
+   //Fynn
+
+    /**
+     * Löscht Datei mit allen Objekten des Typs
+     * @author Fynn
+     * @return boolean Fehler = False Erfolg = True
+     */
+    public boolean delete() {
+
+        if(Files.isRegularFile(this.file.toPath())) {
+            try {
+                return this.file.delete();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+
+
+    public Path getStoragePath() {
+        return storagePath.toAbsolutePath();
+    }
+
+    /**
+     * Setzt den Speicherort für serialisierte Objekte fest erstellt einen
+     * neuen Ordner wenn nciht vorhanden.
+     * @author Peter
+     * @param storagePath Pfad zum Ablageordner für serialisierte Objekte
+     * @return Storage Gibt Singelton zur weiteren Nutzung zurück
+     */
+
+    public Storage setStoragePath(Path storagePath) {
+            try {
+                Files.createDirectories(storagePath);
+            }
+            catch (IOException e) {
+                System.out.println("Speicherverzeichnis konnte nicht angelegt werden");
+            }
+        this.storagePath = storagePath.toAbsolutePath();
         return this;
     }
 }
