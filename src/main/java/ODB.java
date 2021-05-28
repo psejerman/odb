@@ -7,7 +7,7 @@ public class ODB {
         List list = container.getList(object.getClass());
 
         list.add(object);
-
+        container.setList(list);
         container.create();
 
 

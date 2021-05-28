@@ -9,7 +9,7 @@ public class Main {
         Baby henno = new Baby("henno", 1);
         Baby horst = new Baby("Horst", 2);
 
-        //ODB.create(henno);
+        ODB.create(horst);
         //ODB.create(horst);
 
 

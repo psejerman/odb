@@ -84,6 +84,7 @@ public class Storage {
      */
 
     public Storage setFile(File file) {
+        this.setStoragePath(this.storagePath);
 
         this.file = new File(storagePath.toString(),file.toString());
         if(!(this.file.exists() && Files.isRegularFile(this.file.toPath()))) {

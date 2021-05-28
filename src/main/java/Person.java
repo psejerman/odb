@@ -1,4 +1,3 @@
-import java.util.List;
 
 public class Person extends Dataset{
     private String Vorname;
