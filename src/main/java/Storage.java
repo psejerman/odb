@@ -21,6 +21,10 @@ public class Storage {
     private File file;
     private Path storagePath;
 
+    /**
+     * Erstellt Instanz von Storage oder gibt bestehende Instanz zurück
+     * @return Storage: Instanz des Singleton-Objekts
+     */
     public static Storage getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new Storage();
@@ -35,9 +39,8 @@ public class Storage {
     }
 
     /**
-     * Schreibt eine Liste von Objekten persisten auf die Festplatte
-     * @author Peter
-     * @param list list - Liste von Objekten
+     * Schreibt eine Liste von Objekten persistent auf die Festplatte
+     * @param List list: Liste von zuspeichernden Objekten
      */
     public void write(List list) {
         try {
@@ -53,10 +56,9 @@ public class Storage {
     }
 
     /**
-     * Liest eine Liste von Objekten aus persistentem Speicher aus
+     * Liest eine Liste von Objekten aus persistentem Speicher
      * und gibt diese zurück (ein Cast in den Richtigen Typ ist notwendig)
-     * @author Peter
-     * @return List retrievedData - Liste von gelesenen Objekten
+     * @return List retrievedData: Liste von gelesenen Objekten
      */
     public List read() {
         try {
@@ -79,8 +81,8 @@ public class Storage {
     /**
      * Setzt Datei in die serialisierte Objekte geschrieben werden als
      * absoluten Pfad, erstellt ggf neue datei
-     * @param file Zieldatei
-     * @return Storage Gibt Singelton zur weiteren Nutzung zurück
+     * @param File Zieldatei
+     * @return Storage: Gibt Singelton zur weiteren Nutzung zurück
      */
 
     public Storage setFile(File file) {
@@ -98,11 +100,9 @@ public class Storage {
         return this;
     }
 
-   //Fynn
-
     /**
-     * Löscht Datei mit allen Objekten des Typs
-     * @return boolean Fehler = False Erfolg = True
+     * Löscht Datei mit allen Objekten des entsprechenden Typs
+     * @return boolean: Fehler = False Erfolg = True
      */
     public boolean delete() {
 
@@ -116,16 +116,10 @@ public class Storage {
         return false;
     }
 
-
-    public Path getStoragePath() {
-        return storagePath.toAbsolutePath();
-    }
-
     /**
      * Setzt den Speicherort für serialisierte Objekte fest erstellt einen
      * neuen Ordner wenn nciht vorhanden.
-     * @author Peter
-     * @param storagePath Pfad zum Ablageordner für serialisierte Objekte
+     * @param Path storagePath: Pfad zum Ablageordner für serialisierte Objekte
      * @return Storage Gibt Singelton zur weiteren Nutzung zurück
      */
 
@@ -139,4 +133,9 @@ public class Storage {
         this.storagePath = storagePath.toAbsolutePath();
         return this;
     }
+
+    public Path getStoragePath() {
+        return storagePath.toAbsolutePath();
+    }
+
 }
