@@ -102,7 +102,6 @@ public class Storage {
 
     /**
      * Löscht Datei mit allen Objekten des Typs
-     * @author Fynn
      * @return boolean Fehler = False Erfolg = True
      */
     public boolean delete() {
