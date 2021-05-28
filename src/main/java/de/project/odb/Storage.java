@@ -11,13 +11,12 @@ import java.util.List;
  * <h1>Storage</h1>
  * <h3>Serializer/Deserializer Klasse</h3>
  * <p>Singleton Klasse zum Schreiben/Lesen von persistenten Daten
- * setzt serializable implementierung voraus</p>
+ * setzt serializable implementierung in den zuschreibenden Objekten voraus</p>
  * <b>Wichtig:</b> <p></p>Vor Schreibzugriff setFile() nutzen!</p>
  *
  * @version 1.0.2
  * @since   25.05.2021
  */
-
 public class Storage {
     private static Storage INSTANCE = null;
     private File file;
@@ -46,8 +45,8 @@ public class Storage {
      */
     public void write(List list) {
         try {
-            FileOutputStream fos = new FileOutputStream (this.file);
-            ObjectOutputStream oos = new ObjectOutputStream (fos);
+            FileOutputStream fos = new FileOutputStream(this.file);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(list);
             oos.flush();
             oos.close();
@@ -72,21 +71,15 @@ public class Storage {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-         return null;
-    }
-
-    public File getFile() {
-        return this.file;
+        return null;
     }
 
     /**
      * Setzt Datei in die serialisierte Objekte geschrieben werden als
      * absoluten Pfad, erstellt ggf neue datei
      * @param file Zieldatei
-     * @return Storage: Gibt Singelton zur weiteren Nutzung zurück
+     * @return Storage: Gibt Singleton zur weiteren Nutzung zurück
      */
-
     public Storage setFile(File file) {
         this.setStoragePath(this.storagePath);
 
@@ -124,7 +117,6 @@ public class Storage {
      * @param storagePath storagePath: Pfad zum Ablageordner für serialisierte Objekte
      * @return Storage Gibt Singelton zur weiteren Nutzung zurück
      */
-
     public Storage setStoragePath(Path storagePath) {
             try {
                 Files.createDirectories(storagePath);
@@ -134,6 +126,11 @@ public class Storage {
             }
         this.storagePath = storagePath.toAbsolutePath();
         return this;
+    }
+
+    // Standardgetter
+    public File getFile() {
+        return this.file;
     }
 
     public Path getStoragePath() {
