@@ -8,11 +8,10 @@ import java.util.List;
 /**
  * <h1>Serializer/Deserializer Klasse</h1>
  * <p>Singleton Klasse zum Schreiben/Lesen von persistenten Daten
- * Setzt serializable implementierung voraus</p>
+ * setzt serializable implementierung voraus</p>
  * <b>Wichtig:</b> <p></p>Vor Schreibzugriff setFile() nutzen!</p>
  *
- * @author  Peter
- * @version 1.0.1
+ * @version 1.0.2
  * @since   25.05.2021
  */
 
