@@ -2,6 +2,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -88,6 +89,7 @@ public class Storage {
         if(!(this.file.exists() && Files.isRegularFile(this.file.toPath()))) {
             try {
                 Files.createFile(this.file.toPath());
+                this.write(new ArrayList<>());
             } catch (Exception e) {
                 System.out.println("Datei " + this.file.toString() + " konnte nicht erstellt werden");
             }

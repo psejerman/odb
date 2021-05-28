@@ -1,23 +1,19 @@
-import java.io.File;
-import java.io.Reader;
-import java.net.URI;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.sql.Timestamp;
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.lang.reflect.Type;
 
 public class Main {
 
 
 
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
+        Baby henno = new Baby("henno", 1);
+        Baby horst = new Baby("Horst", 2);
+
+        //ODB.create(henno);
+        //ODB.create(horst);
+
+
+        ODB.getAll(Baby.class, true);
 
 
     }

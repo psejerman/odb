@@ -3,12 +3,14 @@ import java.util.List;
 
 public class Container {
 
-    private File sourceFile = new File(this.getClass().getSimpleName());;
+    private File sourceFile;
     private Class type;
     private List list;
 
     public Container(Class type) {
+
         this.type = type;
+        this.sourceFile = new File(type.getSimpleName() + "s");
     }
 
     public void create() {
