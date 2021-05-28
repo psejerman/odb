@@ -1,3 +1,5 @@
+package de.project.odb;
+
 public class Vehicle extends Dataset{
 
     private String color;

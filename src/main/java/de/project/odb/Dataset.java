@@ -1,5 +1,6 @@
-import java.io.Serializable;
+package de.project.odb;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 

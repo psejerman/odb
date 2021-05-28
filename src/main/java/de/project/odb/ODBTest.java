@@ -1,3 +1,5 @@
+package de.project.odb;
+
 public class ODBTest {
     public static void main(String[] args) {
 /*
