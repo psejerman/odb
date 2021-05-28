@@ -4,9 +4,10 @@ import java.io.File;
 import java.util.List;
 
 /**
- * <h1>Containere</h1>
- * <h6>Generischer Container zum verwalten der Listen</h6>
- *<p>Container ist in der Lage mittels nutzung der Storage-Klasse Listen flüchtig zu halten und zu verwalten.
+ * <h1>Container</h1>
+ * <h3>Generischer Container zum verwalten der Listen</h3>
+ *<p>Container ist in der Lage, mittels nutzung der Storage-Klasse Listen flüchtig zu halten und zu verwalten, sowie
+ * persistent in Dateien abhängig vom gehaltenen Objekttypen zu schreiben oder zu lesen.
  * Es besteht die Möglichkeit generische Objekte aus listen zu entnehmen oder diese anzufügen.
  * Die klasse verwaltet des weiteren die Lese-/Schreibzugriffe auf den persistenten Speicher und ermöglicht die Verwaltung der
  * Ziel-/Quelldateien.</p>

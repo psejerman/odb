@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <h1>Serializer/Deserializer Klasse</h1>
+ * <h1>Storage</h1>
+ * <h3>Serializer/Deserializer Klasse</h3>
  * <p>Singleton Klasse zum Schreiben/Lesen von persistenten Daten
  * setzt serializable implementierung voraus</p>
  * <b>Wichtig:</b> <p></p>Vor Schreibzugriff setFile() nutzen!</p>
@@ -41,7 +42,7 @@ public class Storage {
 
     /**
      * Schreibt eine Liste von Objekten persistent auf die Festplatte
-     * @param List list: Liste von zuspeichernden Objekten
+     * @param list
      */
     public void write(List list) {
         try {
@@ -82,7 +83,7 @@ public class Storage {
     /**
      * Setzt Datei in die serialisierte Objekte geschrieben werden als
      * absoluten Pfad, erstellt ggf neue datei
-     * @param File Zieldatei
+     * @param file Zieldatei
      * @return Storage: Gibt Singelton zur weiteren Nutzung zurück
      */
 
@@ -120,7 +121,7 @@ public class Storage {
     /**
      * Setzt den Speicherort für serialisierte Objekte fest erstellt einen
      * neuen Ordner wenn nciht vorhanden.
-     * @param Path storagePath: Pfad zum Ablageordner für serialisierte Objekte
+     * @param storagePath storagePath: Pfad zum Ablageordner für serialisierte Objekte
      * @return Storage Gibt Singelton zur weiteren Nutzung zurück
      */
 
