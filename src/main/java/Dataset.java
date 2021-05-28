@@ -1,19 +1,11 @@
 import java.io.Serializable;
-import java.sql.Timestamp;
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.UUID;
 
 
 public class Dataset implements Serializable{
     private static final long serialVersionUID = 1L;
     protected UUID id;
-    protected Timestamp createDate = Timestamp.from(Instant.now());
-    protected Timestamp updateDate;
-
-    private List list;
-
 
     public Dataset() {
 
@@ -27,11 +19,22 @@ public class Dataset implements Serializable{
     public UUID getId() {
         return id;
     }
-    public <Type>List<Type>  test(Class<Type> cls) {
 
-
-        this.list = new ArrayList<Type>();
-        return list;
+    @Override
+    public String toString() {
+        return "Dataset{" +
+                "id=" + id +
+                '}';
     }
+
+    /*public  List<Field> getAttributes() {
+        Class cls = this.getClass();
+        List<Field> fields = new ArrayList<>();
+        do {
+            Collections.addAll(fields, cls.getDeclaredFields());
+            cls = cls.getSuperclass();
+        } while (cls != null);
+        return fields;
+    }*/
 }
 

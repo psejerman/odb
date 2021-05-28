@@ -13,6 +13,9 @@ public class Container {
         this.sourceFile = new File(type.getSimpleName() + "s");
     }
 
+    /**
+     * Speichert die in den Attributen enthaltene liste mittels Storage Singleton
+     */
     public void create() {
         Storage.getInstance().setFile(this.sourceFile).write(this.list);
     }

@@ -1,29 +1,28 @@
-public class Vehicle {
+public class Vehicle extends Dataset{
 
-    public class Auto extends Dataset{
-        private String color;
+    private String color;
 
-        public Auto() {
-            super();
-        }
+    public Vehicle() {
+        super();
+    }
 
-        public Auto(String farbe) {
-            this.color = farbe;
-        }
+    public Vehicle(String farbe) {
+        this.color = farbe;
+    }
 
-        public String getFarbe() {
-            return color;
-        }
+    public String getFarbe() {
+        return color;
+    }
 
-        public void setFarbe(String color) {
-            this.color = color;
-        }
+    public void setFarbe(String color) {
+        this.color = color;
+    }
 
-        @Override
-        public String toString() {
-            return "Auto{" +
-                    "farbe='" + color + '\'' +
-                    '}';
-        }
+    @Override
+    public String toString() {
+        return "Auto{" +
+                "farbe='" + color + '\'' +
+                '}';
     }
 }
+

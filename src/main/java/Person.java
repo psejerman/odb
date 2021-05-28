@@ -33,11 +33,18 @@ public class Person extends Dataset{
 
     @Override
     public String toString() {
-        return "Person{" +
+        return "Person:" +
                 "Vorname='" + Vorname + '\'' +
                 ", Nachname='" + Nachname + '\'' +
                 ", id=" + super.getId() +
                 '}';
+    }
+    public void printData() {
+        System.out.println("Person:");
+        System.out.println("--------------------------------:");
+        System.out.println("id:" + super.getId());
+        System.out.println("Vorname:" + Vorname);
+        System.out.println("Vorname:" + Nachname);
     }
 
     public String getVorname() {
