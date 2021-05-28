@@ -5,9 +5,9 @@ import java.util.List;
  * <h1>Containere</h1>
  * <h6>Generischer Container zum verwalten der Listen</h6>
  *<p>Container ist in der Lage mittels nutzung der Storage-Klasse Listen flüchtig zu halten und zu verwalten.
- * Es besteht die möglichkeit Generische Objekte aus listen zu entnehmen oder diese anzufügen.
- * Die klasse verwaltet des weiteren die Schreibzugriffe auf den persistenten Speicher und ermöglicht die Verwaltung der
- * Ziel-/Quelldateien der Schreib-/Lesevorgänge.</p>
+ * Es besteht die Möglichkeit generische Objekte aus listen zu entnehmen oder diese anzufügen.
+ * Die klasse verwaltet des weiteren die Lese-/Schreibzugriffe auf den persistenten Speicher und ermöglicht die Verwaltung der
+ * Ziel-/Quelldateien.</p>
  * @version 1.0.2
  * @since   25.05.2021
  */
