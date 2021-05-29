@@ -5,6 +5,7 @@ import java.util.UUID;
 
 // TODO Kommentare
 // TODO toString für agbeleietete Klassen
+
 public class Dataset implements Serializable{
     private static final long serialVersionUID = 1L;
     protected UUID id;

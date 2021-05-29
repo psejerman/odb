@@ -1,5 +1,7 @@
 package de.project.odb;
-//TODO Aufrufe der Tests in methoden Kapseln
+
+//TODO Aufrufe der Tests in methoden Kapseln und aus der Main.java aufrufen
+
 public class ODBTest {
     public static void main(String[] args) {
 
