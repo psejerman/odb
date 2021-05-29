@@ -3,7 +3,7 @@ package de.project.odb;
 public class ODBTest {
     public static void main(String[] args) {
 
-/*
+
         Person horst = new Person("Horst","Mailer");
         Person klaus = new Person("Klaus","Müller");
         Person anne = new Person("Anne","Bar");
@@ -13,9 +13,9 @@ public class ODBTest {
         ODB.create(anne);
         ODB.create(helmut);
 
-        Baby fynn = new Baby("Fynn", 1);
-        Baby pia = new Baby("Pia", 2);
-        Baby peter = new Baby("Peter", 3);
+        Baby fynn = new Baby("Fynn", 1, false);
+        Baby pia = new Baby("Pia", 2, true);
+        Baby peter = new Baby("Peter", 3, true);
         ODB.create(fynn);
         ODB.create(pia);
         ODB.create(peter);
@@ -32,7 +32,7 @@ public class ODBTest {
         ODB.getAll(Vehicle.class, true);
 
         ODB.update(Person.class, 0,  "Horstensen", "nachname");
-        ODB.update(Baby.class, 1, "Piahontas", "name");
+        ODB.update(Baby.class, 0, true, "funny");
         ODB.update(Vehicle.class, 2, "powderblue", "color");
 
         ODB.search(Person.class, "nachname", "Bar");
@@ -45,11 +45,12 @@ public class ODBTest {
 
         ODB.delete(Person.class, true);
         ODB.delete(Baby.class, false);
+        ODB.delete(Vehicle.class, 1);
 
         ODB.getAll(Person.class, true);
         ODB.getAll(Baby.class, true);
         ODB.getAll(Vehicle.class, true);
-*/
+
     }
 
 

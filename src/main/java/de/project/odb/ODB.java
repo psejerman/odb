@@ -7,8 +7,15 @@ import java.util.List;
 //TODO Kommentare
 //TODO Delete ganze Liste
 
+/**
+ * <h1>ODB</h1>
+ */
 public class ODB {
 
+    /**
+     *
+     * @param object
+     */
     public static void create(Object object){
         Container container = new Container(object.getClass()).read();
         List list = container.getList(object.getClass());
@@ -18,16 +25,37 @@ public class ODB {
         container.create();
     }
 
+    /**
+     *
+     * @param cls
+     * @param index
+     * @param <Type>
+     * @return
+     */
     public static <Type>Object read(Class<Type> cls, int index){
         return new Container(cls).getList(cls).get(index);
 
     }
 
+    /**
+     *
+     * @param cls
+     * @param <Type>
+     * @return
+     */
     public static <Type>List<Type> read(Class<Type> cls){
         return new Container(cls).read().getList(cls);
 
     }
 
+    /**
+     *
+     * @param cls
+     * @param index
+     * @param arg1
+     * @param attribute
+     * @param <Type>
+     */
     public static <Type> void update(Class cls, int index, Type arg1, String attribute){
         Container container = new Container(cls);
         List list = container.getList(cls);
@@ -51,6 +79,14 @@ public class ODB {
         container.create();
     }
 
+    /**
+     * Löscht das in index angegebene Element der Liste mit den Objekten der Klasse cls.
+     * Hierzu hält die Funktion die Liste flüchtig, löscht ein Element und überschreibt die Datei mit der aktuallisierten
+     * Version der Liste.
+     * @param cls
+     * @param index
+     * @return
+     */
     public static boolean delete(Class cls, int index){
         try {
             Container container = new Container(cls);
@@ -67,7 +103,8 @@ public class ODB {
     }
 
     /**
-     *
+     * Löscht je nach Angabe true/false nur die Liste einer persistent gespeicherten Datei oder die gesamte Datei.
+     * Hierzu greift delete() auf delete() der Klasse Container zu
      * @param cls
      * @param removeSourceFile
      */
@@ -97,6 +134,15 @@ public class ODB {
         }
         return list;
     }
+
+    /**
+     *
+     * @param cls
+     * @param methodName
+     * @param contains
+     * @param <Type>
+     * @return
+     */
     public static <Type>List<Type> bla(Class<Type> cls, String methodName, String contains){
         Container container = new Container(cls);
         List<Type> list = container.getList(cls);
@@ -116,17 +162,23 @@ public class ODB {
         System.out.println(result.size());
         return result;
     }
+
+    /**
+     *
+     * @param cls
+     * @param methodName
+     * @param contains
+     * @param <Type>
+     * @return
+     */
     public static <Type>List<Type> search(Class<Type> cls, String methodName, String contains){
         Container container = new Container(cls);
         List <Type>list = container.getList(cls);
         List <Type>results = new ArrayList<>();
-        //result.clear();
-        //result.clear();
         for(int i = 0; i<list.size(); i++) {
             try {
                 Object object = new Container(cls).read().getList(cls).get(i);
                 Method method = cls.getMethod("get" + methodName.substring(0, 1).toUpperCase() + methodName.substring(1));
-                //Method method = cls.getMethod("getName");
                 String result = (String) method.invoke(object);
 
                 if(result.equals(contains)) {
