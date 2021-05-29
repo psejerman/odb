@@ -5,25 +5,25 @@ public class Vehicle extends Dataset{
     private String color;
 
     public Vehicle() {
-        super();
     }
 
     public Vehicle(String farbe) {
         this.color = farbe;
     }
 
-    public String getFarbe() {
+    public String getColor() {
         return color;
     }
 
-    public void setFarbe(String color) {
+    public void setColor(String color) {
         this.color = color;
     }
 
     @Override
     public String toString() {
-        return "Auto{" +
-                "farbe='" + color + '\'' +
+        return "Vehicle{" +
+                "id=" + id +
+                ", color='" + color + '\'' +
                 '}';
     }
 }

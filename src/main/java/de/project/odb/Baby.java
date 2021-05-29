@@ -3,32 +3,26 @@ package de.project.odb;
 public class Baby extends Dataset{
     private String name;
     private int age;
+    private boolean funny;
 
     public Baby() {
 
     }
 
-    public Baby(String name, int age) {
-        super.setId();
+    public Baby(String name, Integer age, boolean funny) {
         this.name = name;
         this.age = age;
+        this.funny = funny;
     }
 
     @Override
     public String toString() {
-        System.out.println("Baby:");
-        System.out.println("---------------------------------------------------------------------------");
-        System.out.println("id:" + super.getId());
-        System.out.println("Vorname:" + this.name);
-        System.out.println("Alter:" + age);
-        return "string";
-    }
-    public void printData() {
-        System.out.println("Baby:");
-        System.out.println("--------------------------------:");
-        System.out.println("id:" + super.getId());
-        System.out.println("Vorname:" + this.name);
-        System.out.println("Alter:" + age);
+        return "Baby{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", funny=" + funny +
+                ", id=" + id +
+                '}';
     }
 
     public String getName() {
@@ -45,5 +39,13 @@ public class Baby extends Dataset{
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public boolean isFunny() {
+        return funny;
+    }
+
+    public void setFunny(boolean funny) {
+        this.funny = funny;
     }
 }

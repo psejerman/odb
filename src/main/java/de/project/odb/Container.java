@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * <h1>Container</h1>
  * <h3>Generischer Container zum verwalten der Listen</h3>
- *<p>Container ist in der Lage, mittels nutzung der Storage-Klasse Listen flüchtig zu halten und zu verwalten, sowie
+ *<p>Container ist in der Lage, mittels Nutzung der Storage-Klasse Listen flüchtig zu halten und zu verwalten, sowie
  * persistent in Dateien abhängig vom gehaltenen Objekttypen zu schreiben oder zu lesen.
  * Es besteht die Möglichkeit generische Objekte aus listen zu entnehmen oder diese anzufügen.
  * Die klasse verwaltet des weiteren die Lese-/Schreibzugriffe auf den persistenten Speicher und ermöglicht die Verwaltung der
@@ -28,7 +28,7 @@ public class Container {
 
     /**
      * Speichert die in den Attributen enthaltene Liste persistent.
-     * @return Container: eigene instanz zur weiteren Verwendung
+     * @return Container: eigene Instanz zur weiteren Verwendung
      */
     public Container create() {
         Storage.getInstance().setFile(this.sourceFile).write(this.list);
@@ -37,7 +37,7 @@ public class Container {
 
     /**
      * Liest eine Liste aus persistentem Speicher und hält diese flüchtig zur Bearbeitung vor.
-     * @return eigene instanz zur weiteren Verwendung
+     * @return eigene Instanz zur weiteren Verwendung
      */
     public Container read() {
         this.list = this.getList(this.type);
@@ -46,7 +46,7 @@ public class Container {
 
     /**
      * Löscht die verknüfte persistente Datei.
-     * @return eigene instanz zur weiteren Verwendung
+     * @return eigene Instanz zur weiteren Verwendung
      */
     public Container deleteFile () {
         Storage.getInstance().setFile(this.sourceFile).delete();
@@ -54,7 +54,7 @@ public class Container {
     }
 
     /**
-     * Fügt neues objekt an verknüpfte flüchtige Liste an
+     * Fügt neues Objekt an verknüpfte flüchtige Liste an
      * @param value
      * @param <Type>
      */
@@ -63,7 +63,7 @@ public class Container {
     }
 
     /**
-     * Holt ein Objekt generischen Typs aus flüchtiger liste und gibt es zurück
+     * Holt ein Objekt generischen Typs aus flüchtiger Liste und gibt es zurück
      * @param index
      * @param <Type>
      * @return
