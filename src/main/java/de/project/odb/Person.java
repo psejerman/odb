@@ -12,35 +12,6 @@ public class Person extends Dataset{
         Nachname = nachname;
     }
 
-
-
-
-    public Person read(){
-
-
-
-        return null;
-    }
-
-
-    public Person update() {
-        return null;
-    }
-
-
-    public void delete() {
-
-    }
-
-    @Override
-    public String toString() {
-        return "Person{" +
-                "id=" + id +
-                ", Vorname='" + Vorname + '\'' +
-                ", Nachname='" + Nachname + '\'' +
-                '}';
-    }
-
     public String getVorname() {
         return Vorname;
     }

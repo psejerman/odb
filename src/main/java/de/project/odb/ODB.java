@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 //TODO Kommentare
-//TODO Delete ganze Liste
+
 
 /**
  * <h1>ODB</h1>
@@ -123,9 +123,9 @@ public class ODB {
      * @param print
      * @return
      */
-    public static List getAll(Class cls, boolean print) {
+    public static <Type>List<Type> getAll(Class <Type> cls, boolean print) {
         //Syntaktischer Zucker!!!
-        List list = new Container(cls).getList(cls);
+        List <Type> list = new Container(cls).getList(cls);
 
         if (print) {
             for (int i = 0; i < list.size(); i++) {

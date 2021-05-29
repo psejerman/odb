@@ -20,12 +20,5 @@ public class Vehicle extends Dataset{
         this.color = color;
     }
 
-    @Override
-    public String toString() {
-        return "Vehicle{" +
-                "id=" + id +
-                ", color='" + color + '\'' +
-                '}';
-    }
 }
 

@@ -13,22 +13,12 @@ public class Main {
         ODB.create(henno);
         ODB.create(horst);
 
-        ODB.update(Baby.class, 0, 5, "age");
-        ODB.update(Baby.class, 1, true, "funny");
-
-        ODB.getAll(Baby.class, true);
+        System.out.println(ODB.read(Baby.class,0).toString());
 
 
 
 
-        //ODB.getAll(Baby.class, true);
 
-        //List list = henno.getAttributes();
-        //System.out.println(list.get(3));
-        //ODB.update(Baby.class,0,"Klara","name");
-
-        //ODB.read(Baby.class);
-        //System.out.println(ODB.search(Baby.class,"name", "Maja").get(0));
 
 
 

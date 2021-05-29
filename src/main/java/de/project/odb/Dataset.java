@@ -1,6 +1,7 @@
 package de.project.odb;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.util.UUID;
 
 
@@ -21,21 +22,31 @@ public class Dataset implements Serializable{
         return id;
     }
 
+    /**
+     * Gibt alle Attribute der abgeleiteten Klassen und die Dataset UUID formatiert aus
+     * @retun string Objektattribute
+     */
     @Override
     public String toString() {
-        return "Dataset{" +
-                "id=" + id +
-                '}';
+        StringBuilder string = new StringBuilder();
+        String newLine = System.getProperty("line.separator");
+        string.append("Objekt: " + this.getClass().getSimpleName() +": UUID = " + this.getId());
+        string.append(newLine);
+        for (Field field : this.getClass().getDeclaredFields()) {
+            field.setAccessible(true);
+            String name = field.getName();
+            Object value = null;
+            try {
+                value = field.get(this);
+            } catch (IllegalArgumentException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
+            string.append("-> "+name + ": "+ value);
+            string.append(newLine);
+        }
+        return string.toString();
     }
 
-    /*public  List<Field> getAttributes() {
-        Class cls = this.getClass();
-        List<Field> fields = new ArrayList<>();
-        do {
-            Collections.addAll(fields, cls.getDeclaredFields());
-            cls = cls.getSuperclass();
-        } while (cls != null);
-        return fields;
-    }*/
 }
+
 
