@@ -14,16 +14,6 @@ public class Baby extends Dataset{
         this.age = age;
         this.funny = funny;
     }
-    /*
-    @Override
-    public String toString() {
-        return "Baby{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                ", funny=" + funny +
-                ", id=" + id +
-                '}';
-    }*/
 
     public String getName() {
         return name;
