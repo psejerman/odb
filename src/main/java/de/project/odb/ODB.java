@@ -34,7 +34,7 @@ public class ODB {
         list.add(object);
         container.setList(list);
         container.create();
-        System.out.println("\nDie Datei " + object.getClass().getSimpleName() + " wurde erstellt!\n");
+        System.out.println("\nDie Datei " + object.getClass().getSimpleName() + "s wurde erstellt!\n");
     }
 
     /**
@@ -84,7 +84,7 @@ public class ODB {
             Method get = cls.getMethod(getMethod);
             Method set = cls.getMethod(setMethod, get.getReturnType());
             set.invoke(object, arg1);
-            System.out.println("\nDie Datei " + cls.getSimpleName() + "wurde aktualisiert!\n");
+            System.out.println("\nDie Datei " + cls.getSimpleName() + "s wurde aktualisiert!\n");
         } catch (SecurityException | NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
             e.printStackTrace();
         }
@@ -107,7 +107,7 @@ public class ODB {
             list.remove(index);
             container.setList(list);
             container.create();
-            System.out.println("Der Eintrag " + index + " in der Liste " + cls.getSimpleName() + " wurde gelöscht!\n");
+            System.out.println("Der Eintrag " + index + " in der Liste " + cls.getSimpleName() + "s wurde gelöscht!\n");
             return true;
         }
         catch (Exception e) {
@@ -127,10 +127,10 @@ public class ODB {
         if(!removeSourceFile) {
             container.setList(new ArrayList<>());
             container.create();
-            System.out.println("\nDie Liste wurde aus der Datei " + cls.getSimpleName() + "gelöscht!\n");
+            System.out.println("\nDie Liste wurde aus der Datei " + cls.getSimpleName() + "s gelöscht!\n");
         }
         else container.deleteFile();
-        System.out.println("\nDie Datei " + cls.getSimpleName() + "wurde gelöscht!\n");
+        System.out.println("\nDie Datei " + cls.getSimpleName() + "s wurde gelöscht!\n");
     }
 
     /**
@@ -143,7 +143,7 @@ public class ODB {
         List list = new Container(cls).getList(cls);
 
         if (print) {
-            System.out.println("\nDer Inhalt der Datei " + cls.getSimpleName() + " ist:\n\n");
+            System.out.println("\nDer Inhalt der Datei " + cls.getSimpleName() + "s ist:\n\n");
             for (int i = 0; i < list.size(); i++) {
                 System.out.println(list.get(i).toString());
             }
@@ -176,7 +176,7 @@ public class ODB {
                 e.printStackTrace();
             }
         }
-        System.out.println("\nFolgende Einträge mit dem Inhalt " + pattern + " in der Datei " + cls.getSimpleName() + " wurden gefunden:\n\n");
+        System.out.println("\nFolgende Einträge mit dem Inhalt " + pattern + " in der Datei " + cls.getSimpleName() + "s wurden gefunden:\n\n");
         return results;
     }
 }
