@@ -5,6 +5,7 @@ public class Vehicle extends Dataset{
     private String color;
 
     public Vehicle() {
+        super();
     }
 
     public Vehicle(String farbe) {
@@ -19,12 +20,5 @@ public class Vehicle extends Dataset{
         this.color = color;
     }
 
-    @Override
-    public String toString() {
-        return "Vehicle{" +
-                "id=" + id +
-                ", color='" + color + '\'' +
-                '}';
-    }
 }
 

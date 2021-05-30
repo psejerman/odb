@@ -7,17 +7,9 @@ public class Person extends Dataset{
 
     }
     public Person(String vorname, String nachname) {
+        super.setId();
         Vorname = vorname;
         Nachname = nachname;
-    }
-
-    @Override
-    public String toString() {
-        return "Person{" +
-                "id=" + id +
-                ", Vorname='" + Vorname + '\'' +
-                ", Nachname='" + Nachname + '\'' +
-                '}';
     }
 
     public String getVorname() {
@@ -35,5 +27,6 @@ public class Person extends Dataset{
     public void setNachname(String nachname) {
         Nachname = nachname;
     }
+
 
 }
