@@ -4,6 +4,15 @@ import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.UUID;
 
+/**
+ * <h1>Dataset</h1>
+ * <h3>Basiseigenschaften eines Datensatzes</h3>
+ * Die Dataset-Klasse stellt die grundlegenden Eigenschaften eines Datensatzes sowie das Serializable-Interface zur
+ * Verfügung. Sie vererbt den abgeleiteten Datensätzen eine eindeutige generierte ID, stellt die Versionierung beim
+ * Serialisieren von Objekten (serialVersionUID) sicher und ermöglicht die Ausgabe von Abgeleiteten objekten in die
+ * Konsole mittels toString Override
+ */
+
 
 public class Dataset implements Serializable{
     private static final long serialVersionUID = 1L;
