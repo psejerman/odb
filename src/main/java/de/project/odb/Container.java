@@ -68,7 +68,7 @@ public class Container {
      * @param <Type>
      * @return
      */
-    public <Type> Type get(int index) {
+    public <Type> Type get(Class <Type> cls, int index) {
         return (Type) list.get(index);
     }
 

@@ -4,16 +4,28 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-//TODO Kommentare
-
 
 /**
  * <h1>ODB</h1>
+ * <h3>Klasse zur Implementierung in bestehende Anwendungen</h3>
+ * <p>Die ODB-Klasse enthält statische Methoden, welche ohne eine Instanziierung nutzbar sind.
+ * Es sind die CRUD-Operationen, sowie eine Suche mit Klasse und Attribut als Parameter implementiert.
+ * Die ODB-Klasse stellt ein Abstraktionslayer zur Verfügung welches alle von Dataset abgeleiteten Objekte verarbeiten
+ * kann. Dafür nutzt ODB die Container-Klasse
+ * Benutzung:
+ * ODB.read(Klasse, index)
+ * ODB.read(Klasse)
+ * ODB.create()
+ * ODB.delete()
+ * ODB.update(Klasse, index, neuer Wert, Attribut)
+ * </p>
+ * <b>Wichtig:</b> <p>Getter und Setternamen müssen den Attributnamen der zu verarbeitenden Objekte entsprechen
+ * Bsp: Attribut : name -> setName, getName bei boolean isName</p>
  */
 public class ODB {
 
     /**
-     *
+     * Fügt der Datenbank ein Objekt hinzu.
      * @param object
      */
     public static void create(Object object){
@@ -26,34 +38,35 @@ public class ODB {
     }
 
     /**
-     *
+     * Holt ein Objekt der Parameter-Klasse nach index und gibt es Zurück
      * @param cls
      * @param index
      * @param <Type>
-     * @return
+     * @return object
      */
-    public static <Type>Object read(Class<Type> cls, int index){
-        return new Container(cls).getList(cls).get(index);
-
+    public static <Type> Type read(Class <Type> cls, int index){
+        Type object = new Container(cls).get(cls, index);
+        return object;
     }
 
     /**
-     *
+     * Holt eine Liste aller, dem Parameter entsprechenden Objekte
      * @param cls
      * @param <Type>
      * @return
      */
     public static <Type>List<Type> read(Class<Type> cls){
-        return new Container(cls).read().getList(cls);
+        List<Type> list = new Container(cls).read().getList(cls);
+        return list;
 
     }
 
     /**
-     *
-     * @param cls
+     * Aktualisiert Attributwerte entsprechend der übergebenen Parameter
+     * @param cls Typ des zu manipulierenden Objekts
      * @param index
-     * @param arg1
-     * @param attribute
+     * @param arg1 einzufügender neuer Attributwert
+     * @param attribute Name des zu manipulierenden Attributs
      * @param <Type>
      */
     public static <Type> void update(Class cls, int index, Type arg1, String attribute){
@@ -118,70 +131,41 @@ public class ODB {
     }
 
     /**
-     *
+     * Gibt alle Objekte des Parameter-Typs in die Konsole aus
      * @param cls
      * @param print
-     * @return
      */
-    public static <Type>List<Type> getAll(Class <Type> cls, boolean print) {
+    public static void getAll(Class  cls, boolean print) {
         //Syntaktischer Zucker!!!
-        List <Type> list = new Container(cls).getList(cls);
+        List list = new Container(cls).getList(cls);
 
         if (print) {
             for (int i = 0; i < list.size(); i++) {
                 System.out.println(list.get(i).toString());
             }
         }
-        return list;
     }
 
     /**
-     *
+     * Durchsucht Datenbankeinträge des Parameter-Klassen-Typs, gibt alle Objekte zurück dessen Parameter-Attribut
+     * mit dem Parameter-Pattern übereinstimmt
      * @param cls
-     * @param methodName
-     * @param contains
+     * @param attribute
+     * @param pattern
      * @param <Type>
      * @return
      */
-    public static <Type>List<Type> bla(Class<Type> cls, String methodName, String contains){
-        Container container = new Container(cls);
-        List<Type> list = container.getList(cls);
-        List <Type>result = new ArrayList<>();
-
-        for(int i = 0; i<list.size(); i++) {
-            try {
-                Object object =  new Container(cls).read().getList(cls).get(i);
-                Method method = cls.getMethod("get" + methodName.substring(0, 1).toUpperCase() + methodName.substring(1));
-                if(method.invoke(object) == contains) {
-                    result.add((Type)object);
-                }
-            } catch (SecurityException | NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        }
-        System.out.println(result.size());
-        return result;
-    }
-
-    /**
-     *
-     * @param cls
-     * @param methodName
-     * @param contains
-     * @param <Type>
-     * @return
-     */
-    public static <Type>List<Type> search(Class<Type> cls, String methodName, String contains){
+    public static <Type>List<Type> search(Class<Type> cls, String attribute, String pattern){
         Container container = new Container(cls);
         List <Type>list = container.getList(cls);
         List <Type>results = new ArrayList<>();
         for(int i = 0; i<list.size(); i++) {
             try {
                 Object object = new Container(cls).read().getList(cls).get(i);
-                Method method = cls.getMethod("get" + methodName.substring(0, 1).toUpperCase() + methodName.substring(1));
+                Method method = cls.getMethod("get" + attribute.substring(0, 1).toUpperCase() + attribute.substring(1));
                 String result = (String) method.invoke(object);
 
-                if(result.equals(contains)) {
+                if(result.equals(pattern)) {
                     results.add((Type)object);
                 }
             } catch (SecurityException | NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {

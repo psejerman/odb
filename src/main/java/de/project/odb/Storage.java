@@ -12,7 +12,7 @@ import java.util.List;
  * <h3>Serializer/Deserializer Klasse</h3>
  * <p>Singleton Klasse zum Schreiben/Lesen von persistenten Daten
  * setzt serializable implementierung in den zuschreibenden Objekten voraus</p>
- * <b>Wichtig:</b> <p></p>Vor Schreibzugriff setFile() nutzen!</p>
+ * <b>Wichtig:</b> <p>Vor Schreibzugriff setFile() nutzen!</p>
  *
  * @version 1.0.2
  * @since   25.05.2021
