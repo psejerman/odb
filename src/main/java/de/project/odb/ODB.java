@@ -19,8 +19,8 @@ import java.util.List;
  * ODB.delete()
  * ODB.update(Klasse, index, neuer Wert, Attribut)
  * </p>
- * <b>Wichtig:</b> <p>Getter und Setternamen müssen den Attributnamen der zu verarbeitenden Objekte entsprechen
- * Bsp: Attribut : name -> setName, getName bei boolean isName</p>
+ * <b>Wichtig:</b> <p>Getter- und Setternamen müssen den Attributnamen der zu verarbeitenden Objekte entsprechen
+ * Bsp: Attribut : name - setName, getName bei boolean isName</p>
  */
 public class ODB {
 
