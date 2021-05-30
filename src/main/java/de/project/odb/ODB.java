@@ -13,11 +13,11 @@ import java.util.List;
  * Die ODB-Klasse stellt ein Abstraktionslayer zur Verfügung welches alle von Dataset abgeleiteten Objekte verarbeiten
  * kann. Dafür nutzt ODB die Container-Klasse
  * Benutzung:
- * ODB.read(Klasse, index)
- * ODB.read(Klasse)
- * ODB.create()
- * ODB.delete()
- * ODB.update(Klasse, index, neuer Wert, Attribut)
+ * <code>ODB.read(Klasse, index)</code>
+ * <code>ODB.read(Klasse)</code>
+ * <code>ODB.create()</code>
+ * <code>ODB.delete()</code>
+ * <code>ODB.update(Klasse, index, neuer Wert, Attribut)</code>
  * </p>
  * <b>Wichtig:</b> <p>Getter- und Setternamen müssen den Attributnamen der zu verarbeitenden Objekte entsprechen
  * Bsp: Attribut : name - setName, getName bei boolean isName</p>
@@ -26,7 +26,7 @@ public class ODB {
 
     /**
      * Fügt der Datenbank ein Objekt hinzu.
-     * @param object
+     * @param object    Objekt das gespeichert werden soll
      */
     public static void create(Object object){
         Container container = new Container(object.getClass()).read();
@@ -39,10 +39,10 @@ public class ODB {
 
     /**
      * Holt ein Objekt der Parameter-Klasse nach index und gibt es Zurück
-     * @param cls
-     * @param index
-     * @param <Type>
-     * @return object
+     * @param cls       Klassentyp auf den zugegriffen werden soll
+     * @param index     Index des Objektes in der Liste
+     * @param <Type>    Objekttyp zum Casten der Rückgabe
+     * @return          Objekt des Typs Type
      */
     public static <Type> Type read(Class <Type> cls, int index){
         Type object = new Container(cls).get(cls, index);
@@ -51,22 +51,23 @@ public class ODB {
 
     /**
      * Holt eine Liste aller, dem Parameter entsprechenden Objekte
-     * @param cls
-     * @param <Type>
-     * @return
+     * @param cls       Klassentyp auf den zugegriffen werden soll
+     * @param <Type>    Objekttyp zum Casten der Rückgabe
+     * @return list     Liste des Typs Type
      */
     public static <Type>List<Type> read(Class<Type> cls){
         List<Type> list = new Container(cls).read().getList(cls);
         return list;
+
     }
 
     /**
      * Aktualisiert Attributwerte entsprechend der übergebenen Parameter
-     * @param cls Typ des zu manipulierenden Objekts
-     * @param index
-     * @param arg1 einzufügender neuer Attributwert
+     * @param cls       Klassentyp auf den zugegriffen werden soll
+     * @param index     Index des Objektes in der Liste
+     * @param arg1      einzufügender neuer Attributwert
      * @param attribute Name des zu manipulierenden Attributs
-     * @param <Type>
+     * @param <Type>    Objekttyp zum Casten der Rückgabe
      */
     public static <Type> void update(Class cls, int index, Type arg1, String attribute){
         Container container = new Container(cls);
@@ -96,9 +97,10 @@ public class ODB {
      * Löscht das in index angegebene Element der Liste mit den Objekten der Klasse cls.
      * Hierzu hält die Funktion die Liste flüchtig, löscht ein Element und überschreibt die Datei mit der aktuallisierten
      * Version der Liste.
-     * @param cls
-     * @param index
-     * @return
+     * @param cls       Klassentyp auf den zugegriffen werden soll
+     * @param index     Index des Objektes in der Liste
+     * @return          <code>true</code> Wenn Löschung erfolgreich
+     *                  <code>false</code> bei Fehler
      */
     public static boolean delete(Class cls, int index){
         try {
@@ -119,8 +121,9 @@ public class ODB {
     /**
      * Löscht je nach Angabe true/false nur die Liste einer persistent gespeicherten Datei oder die gesamte Datei.
      * Hierzu greift delete() auf delete() der Klasse Container zu
-     * @param cls
-     * @param removeSourceFile
+     * @param cls               Klassentyp auf den zugegriffen werden soll
+     * @param removeSourceFile  <code>true</code> wenn die Datei ebenfalls zu löschen
+     *                          <code>false</code> wenn die Datei geleert aber belassen werden soll
      */
     public static void delete(Class cls, boolean removeSourceFile){
         Container container = new Container(cls);
@@ -130,13 +133,13 @@ public class ODB {
             System.out.println("\nDie Liste wurde aus der Datei " + cls.getSimpleName() + "s gelöscht!\n");
         }
         else container.deleteFile();
-        System.out.println("\nDie Datei " + cls.getSimpleName() + "s wurde gelöscht!\n");
     }
 
     /**
      * Gibt alle Objekte des Parameter-Typs in die Konsole aus
-     * @param cls
-     * @param print
+     * @param cls       Klassentyp auf den zugegriffen werden soll
+     * @param print     <code>true</code> für Ausgabe in der Konsole und return der Liste
+     *                  <code>false</code> return der Liste ohne Konsolenausgabe
      */
     public static void getAll(Class  cls, boolean print) {
         //Syntaktischer Zucker!!!
@@ -153,11 +156,11 @@ public class ODB {
     /**
      * Durchsucht Datenbankeinträge des Parameter-Klassen-Typs, gibt alle Objekte zurück dessen Parameter-Attribut
      * mit dem Parameter-Pattern übereinstimmt
-     * @param cls
-     * @param attribute
-     * @param pattern
-     * @param <Type>
-     * @return
+     * @param cls           Klassentyp auf den zugegriffen werden soll
+     * @param attribute     Attribut das auf Suchmuster überprüft wird
+     * @param pattern       Suchmuster
+     * @param <Type>        Objekttyp zum Casten der Rückgabe
+     * @return              Liste von Funden gemäß Parametern
      */
     public static <Type>List<Type> search(Class<Type> cls, String attribute, String pattern){
         Container container = new Container(cls);
