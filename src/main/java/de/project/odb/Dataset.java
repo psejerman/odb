@@ -56,7 +56,7 @@ public class Dataset implements Serializable{
                 string.append("-> " + name + ": " + value);
                 string.append(newLine);
             }
-            if(cls.getSuperclass() == Dataset.class){
+            if(cls.getSuperclass() == Dataset.class || cls.getSuperclass() == null){
                 break;
             }
             cls = cls.getSuperclass();
