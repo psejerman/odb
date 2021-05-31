@@ -1,5 +1,11 @@
 package de.project.odb;
 
+/**
+ * <h1>ODBTest</h1>
+ * <h3>Test-Klasse</h3>
+ * <p>ODBTest enthält Methoden zur Demonstration der CRUD-, sowie Suchfunktion von ODB</p>
+ */
+
 public class ODBTest {
 
     public void personCreateTest() {
@@ -45,7 +51,7 @@ public class ODBTest {
         ODB.search(Vehicle.class, "color", "red");
     }
     public void deleteTypeTests() {
-            ODB.delete(Person.class, true);
+        ODB.delete(Person.class, true);
         ODB.delete(Baby.class, false);
         ODB.delete(Vehicle.class, 1);
     }

@@ -59,7 +59,7 @@ public class Storage {
     /**
      * Liest eine Liste von Objekten aus persistentem Speicher
      * und gibt diese zurück (ein Cast in den Richtigen Typ ist notwendig)
-     * @return List retrievedData: Liste von gelesenen Objekten
+     * @return retrievedData        Liste von gelesenen Objekten
      */
     public List read() {
         try {
@@ -76,9 +76,9 @@ public class Storage {
 
     /**
      * Setzt Datei in die serialisierte Objekte geschrieben werden als
-     * absoluten Pfad, erstellt ggf neue datei
-     * @param file Zieldatei
-     * @return Storage: Gibt Singleton zur weiteren Nutzung zurück
+     * absoluten Pfad, erstellt ggf neue Datei
+     * @param file          Zieldatei zum (Erstellen)/Beschreiben.
+     * @return Storage     Gibt Singleton zur weiteren Nutzung zurück
      */
     public Storage setFile(File file) {
         this.setStoragePath(this.storagePath);
@@ -97,7 +97,7 @@ public class Storage {
 
     /**
      * Löscht Datei mit allen Objekten des entsprechenden Typs
-     * @return boolean: Fehler = False Erfolg = True
+     * @return boolean:     <code>true</code>bei Erfolg <code>false</code> bei fehler
      */
     public boolean delete() {
 
@@ -114,8 +114,8 @@ public class Storage {
     /**
      * Setzt den Speicherort für serialisierte Objekte fest erstellt einen
      * neuen Ordner wenn nciht vorhanden.
-     * @param storagePath storagePath: Pfad zum Ablageordner für serialisierte Objekte
-     * @return Storage Gibt Singelton zur weiteren Nutzung zurück
+     * @param storagePath       storagePath: Pfad zum Ablageordner für serialisierte Objekte
+     * @return Storage          Gibt Singeltonobjekt zur weiteren Nutzung zurück
      */
     public Storage setStoragePath(Path storagePath) {
             try {
@@ -128,11 +128,18 @@ public class Storage {
         return this;
     }
 
-    // Standardgetter
+    /**
+     * Gibt Datei zurück die vom Storage ausgelesen oder Geschrieben wird
+     * @return file     Quell-/Zieldatei des Storage
+     */
     public File getFile() {
         return this.file;
     }
 
+    /**
+     * Gibt absoluten Pfad zum Datenbankordner zurück
+     * @return storagepath     Absoluter Pfad
+     */
     public Path getStoragePath() {
         return storagePath.toAbsolutePath();
     }
