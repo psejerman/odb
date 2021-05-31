@@ -5,7 +5,20 @@
     <title>de.project.odb</title>
 </head>
 <body>
-    <h1>Package-Beschreibung</h1>
+    <h3>Package-Beschreibung</h3>
+    <p>Das ODB-Package ist in der Objekte jeglicher Art persistent in Dateien zu speichern, dabei werden Objekte gleichen
+        Typs in Listen zusammengefasst. Die listen werden sowohl in der Laufzeitumgebung mittels generischer Container gehalten,
+        als auch mittels Stroage-Singleton nutzung des Serializable interfaces persistent gespeichert. Die zu Speichernden Objekte
+        müssen zur Gewährleistung einwandfreier Funktionalität von der Dataset-Klasse abgeleitet werden.
+        Dataset vergibt Unique-IDs und ermöglicht die Konsolenausgabe aller Attribute der abgeleiteten Objekte.
+    </p>
+    <h3>Nutzung</h3>
+    <p>ODB kann zur Erweiterung in bestehende Projekte genutzt werden, um Daten persistent zu speichern.
+    Die Einbindung und Nutzung erfolgt über die statischen Methoden der odb Klasse. Es ist keine Instanziierung
+    eines ODB Objekts notwendig! Es kann inline auf die Methoden der deserialisierten Objekte zugegriffen werden
+        Bsp.:   <code>Striing Name = ODB.read(Person.class, 1).getName();</code></p>
+    oder inline Einträge geschrieben werden.
+                <code>ODB.create(new Person("Vorname","Nachname"));</code>
 
 </body>
 </html>
