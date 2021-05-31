@@ -2,7 +2,7 @@ package de.project.odb;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * <h1>Dataset</h1>
@@ -23,17 +23,24 @@ public class Dataset implements Serializable{
 
     }
 
+    /**
+     * Generiert eindeutige Id mittels UUID Objekt
+     */
     public void setId() {
         this.id = UUID.randomUUID();
     }
 
+    /**
+     * Liefert die eindeutige Id des Objekts zurück
+     * @return      UUID des objekts
+     */
     public UUID getId() {
         return id;
     }
 
     /**
      * Gibt alle Attribute der abgeleiteten Klassen und die Dataset UUID formatiert aus
-     * @retun string Objektattribute
+     * @retun string        Objektattribute
      */
     @Override
     public String toString() {
@@ -55,7 +62,6 @@ public class Dataset implements Serializable{
         }
         return string.toString();
     }
-
 }
 
 

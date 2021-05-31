@@ -28,7 +28,7 @@ public class Container {
 
     /**
      * Speichert die in den Attributen enthaltene Liste persistent.
-     * @return Container: eigene Instanz zur weiteren Verwendung
+     * @return Container        eigene Instanz zur weiteren Verwendung
      */
     public Container create() {
         Storage.getInstance().setFile(this.sourceFile).write(this.list);
@@ -37,7 +37,7 @@ public class Container {
 
     /**
      * Liest eine Liste aus persistentem Speicher und hält diese flüchtig zur Bearbeitung vor.
-     * @return eigene Instanz zur weiteren Verwendung
+     * @return Container        eigene Instanz zur weiteren Verwendung
      */
     public Container read() {
         this.list = this.getList(this.type);
@@ -45,8 +45,8 @@ public class Container {
     }
 
     /**
-     * Löscht die verknüfte persistente Datei.
-     * @return eigene Instanz zur weiteren Verwendung
+     * Löscht die verknüpfte persistente Datei.
+     * @return Container        eigene Instanz zur weiteren Verwendung
      */
     public Container deleteFile () {
         Storage.getInstance().setFile(this.sourceFile).delete();
@@ -55,18 +55,18 @@ public class Container {
 
     /**
      * Fügt neues Objekt an verknüpfte flüchtige Liste an
-     * @param value
-     * @param <Type>
+     * @param object         An Liste anzufügendes Objekt
+     * @param <Type>         Objekttyp
      */
-    public <Type> void put(Type value) {
-        list.add(value);
+    public <Type> void put(Type object) {
+        list.add(object);
     }
 
     /**
      * Holt ein Objekt generischen Typs aus flüchtiger Liste und gibt es zurück
-     * @param index
-     * @param <Type>
-     * @return
+     * @param index     Index des entsprechenden Listenelements
+     * @param <Type>    Objekttyp zum Casten der Rückgabe
+     * @return          Objekt der Liste
      */
     public <Type> Type get(Class <Type> cls, int index) {
         return (Type) list.get(index);
@@ -74,17 +74,17 @@ public class Container {
 
     /**
      * Gibt die vollständige flüchtig gehaltene Liste von Objekten generischen Typs zurück.
-     * @param cls
-     * @param <Type>
-     * @return
+     * @param cls           Klassentyp auf den zugegriffen werden soll
+     * @param <Type>        Objekttyp zum Casten der Rückgabe
+     * @return              Gesamte liste von Objekten
      */
     public <Type>List<Type> getList(Class<Type> cls) {
         return ((List<Type>) Storage.getInstance().setFile(this.sourceFile).read());
     }
 
     /**
-     * Überschreibt vollständige flüchtig gehaltene Liste
-     * @param list
+     * Überschreibt vollständige flüchtig gehaltene Liste.
+     * @param list      Liste von Objekten zur Übername in flüchtigen Speicher
      */
     public void setList(List list) {
         this.list = list;
@@ -92,15 +92,15 @@ public class Container {
 
     /**
      * Gibt den aktuellen Lese-/Speicherort des Containers zurück.
-     * @return File
+     * @return sourceFile       Dateiobjekt der Quelldatei des Containers
      */
     public File getSourceFile() {
-        return sourceFile;
+        return this.sourceFile;
     }
 
     /**
      * Überschreibt den im Construktor generierten Default-Lese-/Speicherort des Containers
-     * @param sourceFile
+     * @param sourceFile        Dateiobjekt der Quelldatei des Containers
      */
     public void setSourceFile(File sourceFile) {
         this.sourceFile = sourceFile;
