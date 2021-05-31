@@ -2,7 +2,8 @@ package de.project.odb;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.UUID;
+
 
 /**
  * <h1>Dataset</h1>
@@ -48,17 +49,24 @@ public class Dataset implements Serializable{
         String newLine = System.getProperty("line.separator");
         string.append("Objekt: " + this.getClass().getSimpleName() +": UUID = " + this.getId());
         string.append(newLine);
-        for (Field field : this.getClass().getDeclaredFields()) {
-            field.setAccessible(true);
-            String name = field.getName();
-            Object value = null;
-            try {
-                value = field.get(this);
-            } catch (IllegalArgumentException | IllegalAccessException e) {
-                e.printStackTrace();
+        Class<?> cls = this.getClass();
+        while(true) {
+            for (Field field : cls.getDeclaredFields()) {
+                field.setAccessible(true);
+                String name = field.getName();
+                Object value = null;
+                try {
+                    value = field.get(this);
+                } catch (IllegalArgumentException | IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+                string.append("-> " + name + ": " + value);
+                string.append(newLine);
             }
-            string.append("-> "+name + ": "+ value);
-            string.append(newLine);
+            if(cls.getSuperclass() == Dataset.class || cls.getSuperclass() == null){
+                break;
+            }
+            cls = cls.getSuperclass();
         }
         return string.toString();
     }
