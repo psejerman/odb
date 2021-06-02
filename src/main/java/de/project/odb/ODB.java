@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * <h1>ODB</h1>
@@ -72,6 +73,29 @@ public class ODB {
         Container container = new Container(cls);
         List list = container.getList(cls);
         Object object = list.get(index);
+        String getMethod;
+
+        String setMethod = "set" + attribute.substring(0,1).toUpperCase() + attribute.substring(1);
+        if(arg1.getClass() == Boolean.class) {
+            getMethod = "is" + attribute.substring(0, 1).toUpperCase() + attribute.substring(1);
+        } else {
+            getMethod = "get" + attribute.substring(0, 1).toUpperCase() + attribute.substring(1);
+        }
+        try {
+            Method get = cls.getMethod(getMethod);
+            Method set = cls.getMethod(setMethod, get.getReturnType());
+            set.invoke(object, arg1);
+        } catch (SecurityException | NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        container.setList(list);
+        container.create();
+    }
+
+    public static <Type> void updateById(Class cls, String id, Type arg1, String attribute){
+        Container container = new Container(cls);
+        List list = container.getList(cls);
+        Object object = list.get(searchForPoisition(cls, id));
         String getMethod;
 
         String setMethod = "set" + attribute.substring(0,1).toUpperCase() + attribute.substring(1);
@@ -175,5 +199,25 @@ public class ODB {
             }
         }
         return results;
+    }
+
+    public static <Type>int searchForPoisition(Class<Type> cls, String id){
+        Container container = new Container(cls);
+        List <Type>list = container.getList(cls);
+        List <Type>results = new ArrayList<>();
+        for(int i = 0; i<list.size(); i++) {
+            try {
+                Object object = new Container(cls).read().getList(cls).get(i);
+                Method method = cls.getMethod("getId");
+                String result = method.invoke(object).toString();
+
+                if(result.equals(id)) {
+                    return i;
+                }
+            } catch (SecurityException | NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+        return -1;
     }
 }
