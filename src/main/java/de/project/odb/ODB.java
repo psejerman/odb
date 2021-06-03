@@ -92,7 +92,15 @@ public class ODB {
         container.create();
     }
 
-    public static <Type> void updateById(Class cls, String id, Type arg1, String attribute){
+    /**
+     * Aktualisiert Attributwerte entsprechend der übergebenen UUID id
+     * @param cls       Klassentyp auf den zugegriffen werden soll
+     * @param id        UUID id, die in der Liste gesucht wird
+     * @param arg1      einzufügender neuer Attributwert
+     * @param attribute Name des zu manipulierenden Attributs
+     * @param <Type>    Objekttyp zum Casten der Rückgabe
+     */
+    public static <Type> void update(Class cls, UUID id, Type arg1, String attribute){
         Container container = new Container(cls);
         List list = container.getList(cls);
         Object object = list.get(searchForPoisition(cls, id));
@@ -201,17 +209,18 @@ public class ODB {
         return results;
     }
 
-    public static <Type>int searchForPoisition(Class<Type> cls, String id){
-        Container container = new Container(cls);
-        List <Type>list = container.getList(cls);
-        List <Type>results = new ArrayList<>();
-        for(int i = 0; i<list.size(); i++) {
+    /**
+     * Durchsucht Datenbankeinträge des Parameter-Klassen-Typs nach der übergebenen UUID und gibt den int index des
+     * betreffenden Objekts in der Liste zurück
+     * @param cls           Klassentyp auf den zugegriffen werden soll
+     * @param <Type>        Objekttyp zum Casten der Rückgabe
+     * @param id            UUID id, die in der Liste gesucht wird
+     * @return int          int index des Objekts in der Liste
+     */
+    public static <Type>int searchForPoisition(Class<Type> cls, UUID id) {
+        for (int i = 0; i < new Container(cls).getList(cls).size(); i++) {
             try {
-                Object object = new Container(cls).read().getList(cls).get(i);
-                Method method = cls.getMethod("getId");
-                String result = method.invoke(object).toString();
-
-                if(result.equals(id)) {
+                if (cls.getMethod("getId").invoke(new Container(cls).read().getList(cls).get(i)).equals(id)) {
                     return i;
                 }
             } catch (SecurityException | NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
