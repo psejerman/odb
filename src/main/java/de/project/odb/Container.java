@@ -1,6 +1,7 @@
 package de.project.odb;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -59,7 +60,7 @@ public class Container {
      * @param <Type>         Objekttyp
      */
     public <Type> void put(Type object) {
-        list.add(object);
+        this.list.add(object);
     }
 
     /**
@@ -69,7 +70,7 @@ public class Container {
      * @return          Objekt der Liste
      */
     public <Type> Type get(Class <Type> cls, int index) {
-        return (Type) list.get(index);
+        return (Type)this.getList(cls).get(index);
     }
 
     /**

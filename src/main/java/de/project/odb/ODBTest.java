@@ -22,7 +22,6 @@ public class ODBTest {
         ODB.create(anne);
         ODB.create(helmut);
     }
-
     public void bebyCreateTest() {
         System.out.println("Teste create(): Babys werden Angelegt");
         Baby fynn = new Baby("Fynn", 1, false);
@@ -43,11 +42,21 @@ public class ODBTest {
         ODB.create(renault);
         System.out.println("Fertig");
     }
+    public void custmerCreateTest() {
+        System.out.println("Teste create(): Custemer werden Angelegt");
+        Customer customer1 = new Customer(1,"Lasse","Bluten");
+        Customer customer2 = new Customer(2,"Lassma","Ballernsson");
+        ODB.create(customer1);
+        ODB.create(customer2);
+
+        System.out.println("Fertig");
+    }
     public void getAllTest() {
         System.out.println("Teste getAll(): Alle vorab geschriebenen Objekte werden deserialisiert");
         ODB.getAll(Person.class, true);
         ODB.getAll(Baby.class, true);
         ODB.getAll(Vehicle.class, true);
+        ODB.getAll(Customer.class, true);
         System.out.println("Test Fertig");
     }
     public void updateAllTest() {

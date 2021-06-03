@@ -11,9 +11,8 @@ public class Customer extends Person{
     private int customerID;
 
     public Customer(int customerID, String vorname, String nachname) {
+        super(vorname, nachname);
         this.customerID = customerID;
-        super.setVorname(vorname);
-        super.setNachname(nachname);
     }
 
     public int getCustomerID() {
