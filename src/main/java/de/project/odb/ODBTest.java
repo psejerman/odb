@@ -1,6 +1,4 @@
 package de.project.odb;
-
-import java.sql.SQLOutput;
 import java.util.List;
 
 /**
@@ -22,7 +20,7 @@ public class ODBTest {
         ODB.create(anne);
         ODB.create(helmut);
     }
-    public void bebyCreateTest() {
+    public void babyCreateTest() {
         System.out.println("Teste create(): Babys werden Angelegt");
         Baby fynn = new Baby("Fynn", 1, false);
         Baby pia = new Baby("Pia", 2, true);
@@ -42,8 +40,8 @@ public class ODBTest {
         ODB.create(renault);
         System.out.println("Fertig");
     }
-    public void custmerCreateTest() {
-        System.out.println("Teste create(): Custemer werden Angelegt");
+    public void customerCreateTest() {
+        System.out.println("Teste create(): Customer werden Angelegt");
         Customer customer1 = new Customer(1,"Lasse","Bluten");
         Customer customer2 = new Customer(2,"Lassma","Ballernsson");
         ODB.create(customer1);
