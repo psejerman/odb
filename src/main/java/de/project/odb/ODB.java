@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * <h1>ODB</h1>
@@ -72,6 +73,37 @@ public class ODB {
         Container container = new Container(cls);
         List list = container.getList(cls);
         Object object = list.get(index);
+        String getMethod;
+
+        String setMethod = "set" + attribute.substring(0,1).toUpperCase() + attribute.substring(1);
+        if(arg1.getClass() == Boolean.class) {
+            getMethod = "is" + attribute.substring(0, 1).toUpperCase() + attribute.substring(1);
+        } else {
+            getMethod = "get" + attribute.substring(0, 1).toUpperCase() + attribute.substring(1);
+        }
+        try {
+            Method get = cls.getMethod(getMethod);
+            Method set = cls.getMethod(setMethod, get.getReturnType());
+            set.invoke(object, arg1);
+        } catch (SecurityException | NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        container.setList(list);
+        container.create();
+    }
+
+    /**
+     * Aktualisiert Attributwerte entsprechend der übergebenen UUID id
+     * @param cls       Klassentyp auf den zugegriffen werden soll
+     * @param id        UUID id, die in der Liste gesucht wird
+     * @param arg1      einzufügender neuer Attributwert
+     * @param attribute Name des zu manipulierenden Attributs
+     * @param <Type>    Objekttyp zum Casten der Rückgabe
+     */
+    public static <Type> void update(Class cls, UUID id, Type arg1, String attribute){
+        Container container = new Container(cls);
+        List list = container.getList(cls);
+        Object object = list.get(searchForPoisition(cls, id));
         String getMethod;
 
         String setMethod = "set" + attribute.substring(0,1).toUpperCase() + attribute.substring(1);
@@ -175,5 +207,26 @@ public class ODB {
             }
         }
         return results;
+    }
+
+    /**
+     * Durchsucht Datenbankeinträge des Parameter-Klassen-Typs nach der übergebenen UUID und gibt den int index des
+     * betreffenden Objekts in der Liste zurück
+     * @param cls           Klassentyp auf den zugegriffen werden soll
+     * @param <Type>        Objekttyp zum Casten der Rückgabe
+     * @param id            UUID id, die in der Liste gesucht wird
+     * @return int          int index des Objekts in der Liste
+     */
+    public static <Type>int searchForPoisition(Class<Type> cls, UUID id) {
+        for (int i = 0; i < new Container(cls).getList(cls).size(); i++) {
+            try {
+                if (cls.getMethod("getId").invoke(new Container(cls).read().getList(cls).get(i)).equals(id)) {
+                    return i;
+                }
+            } catch (SecurityException | NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+        return -1;
     }
 }
